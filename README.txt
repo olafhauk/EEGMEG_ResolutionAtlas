@@ -24,3 +24,9 @@ Analysis parameters for previous scripts.
 
 RA_SLURM.py:
 Script to run (some) previous scripts in parallel mode for participants using SLURM.
+
+psf_ctf_examples_MNE.py:
+PSFs and CTFs for 3 example ROIs for MNE-type methods.
+
+psf_ctf_examples_LCMV.py:
+PSFs and CTFs for 2 example ROIs for LCMV beamformers.
