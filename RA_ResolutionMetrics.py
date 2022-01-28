@@ -30,7 +30,6 @@ print('MNE Version: %s\n\n' % mne.__version__)  # just in case
 module_name = sys.argv[1]
 
 C = importlib.import_module(module_name)
-importlib.reload(C)
 
 # list of parameters settings to apply
 
@@ -304,9 +303,12 @@ for sbj in sbj_ids:
 
                     noise_cov_lcmv = deepcopy(noise_cov_use)
 
+                    # rank = 'info' in make_lcmv did not get the rank right
+                    rank_noise = mne.compute_rank(noise_cov_lcmv, rank='info', info=info)
+
                     bf_filts = make_lcmv(info, fwd_use, data_cov_use, reg=0.05,
                                          noise_cov=noise_cov_lcmv,
-                                         pick_ori=None, rank={'meg': 71, 'eeg': 69},
+                                         pick_ori=None, rank=rank_noise,
                                          weight_norm='unit-noise-gain',
                                          reduce_rank=False,
                                          depth=None,

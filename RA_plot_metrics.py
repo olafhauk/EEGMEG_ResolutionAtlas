@@ -24,7 +24,6 @@ print('MNE Version: %s\n\n' % mne.__version__)  # just in case
 
 module_name = sys.argv[1]
 C = importlib.import_module(module_name)
-# importlib.reload(C)
 
 inpath = op.join(C.resolution_path, C.resolution_subdir, 'fsaverage')
 
@@ -44,27 +43,27 @@ metrics = ['peak_err', 'sd_ext', 'peak_amp', 'sum_amp']  # type of resolution me
 # inverse methods and contrasts to average
 # (method/contrast, max scaling for (err, ext, amp))
 
-# # All
-# methods = [('MNE', (5., 5., 1.)),
-#            ('MNE_dep80', (5., 5., 1.)),
-#            ('sLOR', (5., 5., 1.)),
-#            ('dSPM', (5., 5., 1.)),
-#            ('eLOR', (5., 5., 1.)),
-#            ('LCMV_-200_0ms', (5., 5., 1.)),
-#            ('LCMV_50_250ms', (5., 5., 1.)),
-#            (('MNE', 'MNE_dep80'), (5., 1., .5)),
-#            (('MNE', 'dSPM'), (5., 1., .5)),
-#            (('MNE', 'sLOR'), (5., 1., .5)),
-#            (('MNE', 'eLOR'), (5., 1., .5)),
-#            (('sLOR', 'eLOR'), (5., 1., .5)),
-#            (('dSPM', 'sLOR'), (5., 1., .5)),
-#            (('MNE', 'LCMV_-200_0ms'), (5., 5., .5)),
-#            (('MNE', 'LCMV_50_250ms'), (5., 5., .5)),
-#            (('LCMV_-200_0ms', 'LCMV_50_250ms'), (5., 1., .5))]
+# All
+methods = [('MNE', (5., 5., 1.)),
+           ('MNE_dep80', (5., 5., 1.)),
+           ('sLOR', (5., 5., 1.)),
+           ('dSPM', (5., 5., 1.)),
+           ('eLOR', (5., 5., 1.)),
+           ('LCMV_-200_0ms', (5., 5., 1.)),
+           ('LCMV_50_250ms', (5., 5., 1.)),
+           (('MNE', 'MNE_dep80'), (5., 1., .5)),
+           (('MNE', 'dSPM'), (5., 1., .5)),
+           (('MNE', 'sLOR'), (5., 1., .5)),
+           (('MNE', 'eLOR'), (5., 1., .5)),
+           (('sLOR', 'eLOR'), (5., 1., .5)),
+           (('dSPM', 'sLOR'), (5., 1., .5)),
+           (('MNE', 'LCMV_-200_0ms'), (5., 5., .5)),
+           (('MNE', 'LCMV_50_250ms'), (5., 5., .5)),
+           (('LCMV_-200_0ms', 'LCMV_50_250ms'), (5., 1., .5))]
 
 # LCMV only
-methods = [('LCMV_-200_0ms', (8., 8., 1.)),
-           ('LCMV_50_250ms', (8., 8., 1.))]
+# methods = [('LCMV_-200_0ms', (8., 8., 1.)),
+#            ('LCMV_50_250ms', (8., 8., 1.))]
 #            # (('MNE', 'LCMV_-200_0ms'), (2., 5., .5)),
 #            # (('MNE', 'LCMV_50_250ms'), (2., 5., .5)),
 #            # (('LCMV_-200_0ms', 'LCMV_50_250ms'), (2., 5., .5))]
@@ -82,8 +81,8 @@ subject = 'fsaverage'
 
 # change font for pyplot (histograms)
 font = {'family' : 'normal',
-        'weight' : 'bold',
-        'size'   : 14}
+        'weight' : 'regular',
+        'size'   : 20}
 matplotlib.rc('font', **font)
 
 def data_from_stcs(stcs, times=[0.]):
@@ -237,7 +236,7 @@ for params in paramlist:
                 ax.axvline(avg, color='k')
                 ax_text = '%.1f(%.1f)|%.1f' % (avg, data.std(), np.median(data))
                 axt = ax.text(avg + 0.2, bin_max - bin_max / 10., ax_text)
-                axt.set_fontsize(18.)
+                axt.set_fontsize(26.)
                 fig_fname = op.join(C.figures_dir, stctext + '_hist.jpg')
                 fig.savefig(fig_fname)
                 plt.close(fig)

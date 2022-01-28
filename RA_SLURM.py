@@ -2,7 +2,6 @@
 """
 ==========================================
 Submit sbatch jobs for WH Resolution analysis
-for mnedev functionality
 ==========================================
 
 """
@@ -20,7 +19,7 @@ subjs = range(0, 16)
 job_list = \
 [
     #####
-    # COMPUTING and MORPHING Sensitivity Maps
+    # COMPUTING and MORPHING
     # #####
     # Compute resolution metrics
     {'N':   'RA_Metrics',                                       # job name
@@ -42,15 +41,15 @@ job_list = \
      'Cf':  'RA_config',                     # configuration script
      'Ss':  subjs,                                          # subject indices
      'mem': '1G',                                          # memory for qsub process
-     'dep': 'RA_Metrics'},
+     'dep': 'RA_Diff'},
 
     # Grand-average STCs
-    {'N':   'RA_Avg',                                       # job name
-     'Py':  'RA_AvgSTCs',                         # Python script
-     'Cf':  'RA_config',                     # configuration script
-     'Ss':  [99],                                          # subject indices
-     'mem': '1G',                                          # memory for qsub process
-     'dep': ''},
+    # {'N':   'RA_Avg',                                       # job name
+    #  'Py':  'RA_AvgSTCs',                         # Python script
+    #  'Cf':  'RA_config',                     # configuration script
+    #  'Ss':  [99],                                          # subject indices
+    #  'mem': '1G',                                          # memory for qsub process
+    #  'dep': ''},
 ]
 
 # directory where python scripts are

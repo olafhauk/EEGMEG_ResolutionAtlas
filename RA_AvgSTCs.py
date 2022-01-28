@@ -28,7 +28,6 @@ print('MNE Version: %s\n\n' % mne.__version__)  # just in case
 module_name = sys.argv[1]
 
 C = importlib.import_module(module_name)
-importlib.reload(C)
 
 # list of parameters settings to apply
 
